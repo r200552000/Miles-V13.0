@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>TDC環哩匯 x 航空卡消費累哩工具 v13.3.2</title>
+  <title>TDC環哩匯 x 航空卡消費累哩工具 v13.3.3</title>
 
   <!-- 外部資源 -->
   <link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Mali:wght@500;700&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
@@ -285,7 +285,7 @@
     <div class="d-flex align-items-center">
       <div class="header-icon"><svg class="lucide"><use href="#icon-plane"/></svg></div>
       <div class="header-title">
-        <h5>TDC 航空累哩工具<br>v13.3.2</h5>
+        <h5>TDC 航空累哩工具<br>v13.3.3</h5>
         <small class="text-secondary fw-bold" style="color:#d946ef !important;"><svg class="lucide me-1" style="font-size:0.8em;vertical-align:-0.1em;"><use href="#icon-sparkles"/></svg>終極大成版</small>
       </div>
     </div>
@@ -427,8 +427,6 @@
            <button onclick="batchImport()" class="btn-action flex-grow-1 font-hand py-1 mt-0" style="background:linear-gradient(135deg, #10b981 0%, #059669 100%); border:none; box-shadow:2px 2px 0 #047857;">一鍵進倉</button>
         </div>
       </div>
-      
-      <!-- AI 顧問已移至倉庫分頁 -->
 
       <div class="card-box mt-3" style="background:#fffbeb; border-color:#fde68a;">
         <h5 class="mb-3 text-warning d-flex align-items-center" style="color:#b45309;"><svg class="lucide me-2"><use href="#icon-shield"/></svg>上限小管家</h5>
@@ -517,13 +515,13 @@
               </ul>
             </div>
 
-            <!-- v13.3.2 展售櫥窗：AI 顧問彩蛋 -->
+            <!-- v13.3.3 展售櫥窗：AI 顧問彩蛋 -->
             <div id="ai-teaser-container" class="teaser-card mb-3" onclick="showTeaserModal()">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h6 class="fw-bold mb-0" style="color: #a21caf;"><svg class="lucide me-1"><use href="#icon-sparkles"/></svg>專屬 AI 哩程策略顧問</h6>
                     <span class="badge bg-secondary d-flex align-items-center gap-1" style="background:#d946ef !important;"><svg class="lucide" style="width:0.8em;height:0.8em;"><use href="#icon-lock"/></svg>未解鎖</span>
                 </div>
-                <p class="small mb-0" style="color: #701a75;">讓 AI 幫您算牌！自動盤點倉庫靈感、監控額度，並給予最佳刷卡兵推。點此免費解鎖專屬財務大腦 🚀</p>
+                <p class="small mb-0" style="color: #701a75;">讓 AI 幫您算牌！自動盤點倉庫靈感、開口行程戰略，並給予最佳刷卡兵推。點此免費解鎖專屬財務大腦 🚀</p>
             </div>
 
             <!-- 解鎖後才會出現的真實按鈕 -->
@@ -660,7 +658,7 @@
         <div class="modal-body p-0">
             <p class="fw-bold text-dark mb-3">✨ 免費解鎖後，您將獲得三大神級功能：</p>
             <div class="mb-3 p-3 rounded-4" style="background:#f8fafc; border:1px solid #e2e8f0;">
-                <div class="mb-2">✈️ <strong class="text-primary">機票兌換靈感</strong><br><small class="text-muted">AI 直接幫您合併不同帳戶的點數，並給予您兌換機票的完美靈感。</small></div>
+                <div class="mb-2">✈️ <strong class="text-primary">進階兌換靈感</strong><br><small class="text-muted">AI 直接幫您合併點數，並給予您外站出發或開口行程 (Open-Jaw) 的高階戰略。</small></div>
                 <div class="mb-2">🚨 <strong class="text-danger">動態額度糾察隊</strong><br><small class="text-muted">自動掃描卡片額度，快刷滿時主動警告換卡。</small></div>
                 <div>💡 <strong class="text-success">下一步刷卡兵推</strong><br><small class="text-muted">根據消費習慣，量身定做下一階段的主力卡片建議。</small></div>
             </div>
@@ -682,7 +680,7 @@
           <div class="mb-4"><div class="fw-bold mb-2 text-primary">內建神卡</div><div id="builtin-cards-list"></div></div>
           <div class="mb-4"><div class="fw-bold mb-2 text-primary">自訂卡片</div><div id="custom-cards-list" class="mb-3"></div><div class="p-3 border rounded-3" style="background:#fff; border-color:#bfdbfe !important; border-style:dashed !important;"><label class="small fw-bold text-primary mb-2 font-hand">＋ 新增卡片</label><input type="text" id="new-card-name" class="form-control mb-2" placeholder="卡片名稱"><div class="row mb-2"><div class="col-6"><input type="number" id="new-card-dom" class="form-control" placeholder="國內" min="0"></div><div class="col-6"><input type="number" id="new-card-for" class="form-control" placeholder="國外" min="0"></div></div><button onclick="addCustomCard()" class="btn-primary w-100 mt-2 font-hand" style="padding:6px;">確認新增</button></div></div>
           
-          <!-- v13.3.2 數據魔術貼區塊 -->
+          <!-- v13.3.3 數據魔術貼區塊 -->
           <div class="backup-section">
             <div class="fw-bold mb-3 text-warning d-flex align-items-center" style="color:#b45309;">
               <svg class="lucide me-2"><use href="#icon-copy"/></svg> 💾 數據搬家中心
@@ -698,7 +696,7 @@
             </div>
           </div>
 
-          <!-- v13.3.2 AI 彩蛋金鑰綁定區 (保姆級圖文升級) -->
+          <!-- v13.3.3 AI 彩蛋金鑰綁定區 (保姆級圖文升級) -->
           <div class="api-setup-section mt-4" id="api-setup-block">
             <h6 class="fw-bold mb-2 d-flex align-items-center justify-content-between" style="color: #a21caf;">
                 <span><svg class="lucide me-1"><use href="#icon-sparkles"/></svg>解鎖 AI 策略顧問</span>
@@ -759,7 +757,8 @@
 
   <script>
     /* =========================
-       TDC Miles Tool v13.3.2 終極大成版 (防幻覺雙引擎 + 穩定 AI)
+       TDC Miles Tool v13.3.3 終極大成版 
+       (防幻覺雙引擎 + 穩定 AI + 匯豐進階白名單戰略)
        ========================= */
     const DB_KEY = 'MILES_APP_V12_6_ISOLATED'; 
     const RULES_KEY = 'MILES_APP_RULES_V12_6';
@@ -827,36 +826,42 @@
         let limitsText = [];
         const now = new Date();
         const cards = [];
-        db.settings.enabledBuiltins.forEach(id => cards.push({ id, name: BUILTIN_DEFS.find(d=>d.id===id).name, limit: getLimitVal(id) }));
+        db.settings.enabledBuiltins.forEach(id => {
+            // v13.3.3 不將匯豐旅人傳給 AI 計算額度，因為它無上限
+            if (id !== 'hsbc_inf') {
+                cards.push({ id, name: BUILTIN_DEFS.find(d=>d.id===id).name, limit: getLimitVal(id) });
+            }
+        });
         cards.forEach(c => {
             const lKey = getLimitKey(db, c.id, now); 
             const curr = db.limits[lKey] ? db.limits[lKey].spend : 0;
             limitsText.push(`${c.name} 已刷 ${curr}/${c.limit}`);
         });
 
-        // 加入戰略鐵律的 System Prompt
-        const promptText = `請扮演一位專業、熱情且貼心的台灣信用卡哩程達人（使用繁體中文），為我進行簡短的「哩程與刷卡策略健檢」。
+        // 🧠 加入戰略鐵律的 System Prompt (包含禁令、白名單、開口行程)
+        const promptText = `請扮演一位專業、熱情且精通台灣信用卡哩程生態系的高階玩家（使用繁體中文），為我進行深度的「哩程戰略健檢」。
         我目前的倉庫資產包含:
         ${assetsDetail || '尚無資產'}
 
-        我本期/本年度的加碼額度消耗狀況:
+        我本期/本年度的【有上限】加碼額度消耗狀況:
         ${limitsText.join(', ') || '尚無紀錄'}
 
-        任務指令：
-        1. 你必須具備跨帳戶整合能力。當發現我有『某航空原生哩程』與『可轉入該航空的積分（請直接使用系統幫你算好的等值哩程）』時，請務必幫我加總合併計算！
-        2. 根據合併後的總火力，告訴我現在能兌換什麼機票（給予具體兌換靈感）。
-        3. 掃描我的額度消耗，若有快滿的卡片請提醒我換卡。
+        任務指令與戰略鐵律：
+        1. 【跨帳戶精確合併】：當發現我有『某航空原生哩程』與『可轉入該航空的積分』時，請務必加總合併計算！（請直接使用系統括號內幫你算好的等值哩程）。
+        2. 【匯豐旅人積分特規禁令】：若我有「匯豐旅人積分 (HSBC)」，**絕對不可**建議轉入全日空 (ANA)。台灣匯豐的合作名單包含：華航、長榮、國泰(亞萬)、新航(SQ)、日航(JL)、聯航(UA)、卡達(QR)、法航(AF)等15+家。
+        3. 【高階路由戰略】：除了基本的來回票，若我的哩程足夠，請**主動推薦「開口行程 (Open-Jaw)」**（例如：東京進、大阪出，或外站出發）的戰略，最大化哩程價值。
+        4. 【額度掃描】：若發現有快滿的卡片，請提醒我換卡。
         
-        請給出具體且鼓勵性的建議。語氣要像朋友聊天一樣，排版清晰。`;
+        請給出具體且令人驚豔的建議。語氣要像朋友聊天一樣，排版清晰。`;
 
         try {
-            // 切換為官方正式主推模型 gemini-2.5-flash (消滅 404 Error)
+            // 切換為官方正式主推模型 gemini-2.5-flash
             const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     contents: [{ parts: [{ text: promptText }] }],
-                    systemInstruction: { parts: [{ text: "You are a friendly credit card miles expert in Taiwan. Use Traditional Chinese. Keep the response concise to a single small paragraph or 3 bullet points." }] }
+                    systemInstruction: { parts: [{ text: "You are a friendly and top-tier credit card miles expert in Taiwan. Use Traditional Chinese. Provide advanced routing strategies like Open-Jaw if applicable." }] }
                 })
             });
 
@@ -867,7 +872,7 @@
 
             document.getElementById('ai-diagnostic-result').innerHTML = `
                 <div class="mt-2 p-3 rounded-4" style="background: #fdf4ff; border: 2px solid #e879f9; color: #701a75; font-size: 0.9rem; line-height: 1.6; font-family: var(--font-main); animation: fadeIn 0.3s ease;">
-                    <div class="fw-bold mb-2 d-flex align-items-center"><svg class="lucide me-1"><use href="#icon-sparkles"/></svg> AI 顧問診斷結果：</div>
+                    <div class="fw-bold mb-2 d-flex align-items-center"><svg class="lucide me-1"><use href="#icon-sparkles"/></svg> AI 顧問戰略報告：</div>
                     ${resultText.replace(/\n/g, '<br>')}
                 </div>
             `;
@@ -1056,7 +1061,7 @@
             calc: (ctx) => { 
                 if (['麥當勞', ...HSBC_BLOCK_BASE].some(w => ctx.kwKey.includes(w))) return { miles:0, note:'🚫 非回饋', consumedQuota:0 }; 
                 let div = (ctx.cat.startsWith('flight') || ctx.isForeign) ? 10 : 18; 
-                return { miles: Math.trunc(ctx.twdBase/div), note: `$${div}元/哩`, consumedQuota: ctx.twdBase }; 
+                return { miles: Math.trunc(ctx.twdBase/div), note: `$${div}元/哩`, consumedQuota: ctx.twdBase }; // 無上限卡片，仍記錄 spend 但不觸發警告
             } 
         },
         'ctbc_ci': { 
@@ -1390,11 +1395,25 @@
 
         const limitsCon = document.getElementById('limits-container'); let lh = '';
         const cards = [];
-        db.settings.enabledBuiltins.forEach(id => cards.push({ id, name: BUILTIN_DEFS.find(d=>d.id===id).name, limit: getLimitVal(id) }));
+        db.settings.enabledBuiltins.forEach(id => {
+            // 🛡️ v13.3.3 UI 降壓：只將「有上限」的卡片加入進度條監控，排除匯豐旅人 (hsbc_inf)
+            if (id !== 'hsbc_inf') {
+                cards.push({ id, name: BUILTIN_DEFS.find(d=>d.id===id).name, limit: getLimitVal(id) });
+            }
+        });
+        
         cards.forEach(c => {
             const lKey = getLimitKey(db, c.id, now); const curr = db.limits[lKey] ? db.limits[lKey].spend : 0; const pct = Math.min(100, (curr/c.limit)*100);
             lh += `<div class="mb-3"><div class="d-flex justify-content-between small mb-1"><strong>${c.name}</strong><span>$${curr.toLocaleString()} / $${c.limit.toLocaleString()}</span></div><div class="progress"><div class="progress-bar ${pct>80?'bg-warning':'bg-success'}" style="width:${pct}%"></div></div></div>`;
         });
+        
+        // 額外顯示匯豐旅人總額 (無進度條)
+        if (db.settings.enabledBuiltins.includes('hsbc_inf')) {
+            const lKey = getLimitKey(db, 'hsbc_inf', now);
+            const curr = db.limits[lKey] ? db.limits[lKey].spend : 0;
+            lh += `<div class="mb-1"><div class="d-flex justify-content-between small text-muted"><strong>匯豐 旅人無限</strong><span>累積 $${curr.toLocaleString()} (無上限)</span></div></div>`;
+        }
+
         limitsCon.innerHTML = lh;
     }
 
@@ -1733,7 +1752,7 @@
 
     function exportDataMagic() {
         const db = loadDB(); const rules = loadRules();
-        const pack = { db, rules, v: '13.3.2', ts: Date.now() };
+        const pack = { db, rules, v: '13.3.3', ts: Date.now() };
         const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(pack))));
         
         if (navigator.clipboard && window.isSecureContext) {
@@ -1782,3 +1801,5 @@
   </script>
 </body>
 </html>
+
+

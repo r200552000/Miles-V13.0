@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>TDC環哩匯 x 航空卡消費累哩工具 v13.1</title>
+  <title>TDC環哩匯 x 航空卡消費累哩工具 v13.3</title>
 
   <!-- 外部資源 -->
   <link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Mali:wght@500;700&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
@@ -59,7 +59,7 @@
     .lucide-fill { fill: currentColor; stroke: none; }
 
     /* =========================
-       CSS 樣式表 (保留 莫蘭迪美學)
+       CSS 樣式表 (莫蘭迪美學)
        ========================= */
     :root {
       --bg-main: #fffdf9; --bg-card: #ffffff;
@@ -227,7 +227,7 @@
     .fs-4 { font-size: 1.5rem !important; } .fs-5 { font-size: 1.25rem !important; } .fs-6 { font-size: 1rem !important; }
     .text-success { color: #10b981 !important; } .text-danger { color: #ef4444 !important; }
 
-    /* Utilities */
+    /* Utilities (Clear Btn & Magic Backup) */
     .clear-btn { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; background: #e2e8f0; color: #64748b; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 5; font-size: 0.8rem; border: none; padding: 0; }
     .input-group:focus-within .clear-btn { display: flex; }
     .btn-backup { background: #f59e0b; color: white; border: none; border-radius: 16px; padding: 12px; width: 100%; font-family: var(--font-hand); font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 2px 2px 0 #b45309; transition: 0.1s; cursor: pointer; margin-bottom: 12px; }
@@ -236,30 +236,14 @@
     .btn-restore:active { transform: translateY(2px); box-shadow: 0 0 0; }
     .backup-section { background: #fff7ed; border: 2px dashed #fed7aa; border-radius: 20px; padding: 16px; margin-top: 20px; }
 
-    /* v13.1 AI 上傳特效 */
-    .ai-upload-box {
+    /* Teaser & API Section */
+    .teaser-card {
         background: linear-gradient(135deg, #fdf4ff 0%, #f3e8ff 100%);
-        border: 2px dashed #e879f9;
-        border-radius: 16px;
-        padding: 16px;
-        text-align: center;
-        cursor: pointer;
-        transition: 0.2s;
-        margin-bottom: 16px;
-        position: relative;
-        overflow: hidden;
+        border: 2px dashed #f0abfc; border-radius: 16px; padding: 16px;
+        cursor: pointer; transition: 0.2s; position: relative; overflow: hidden;
     }
-    .ai-upload-box:active { transform: scale(0.98); }
-    .ai-upload-text { color: #a21caf; font-weight: 700; font-family: var(--font-hand); font-size: 1.05rem; }
-    .ai-upload-subtext { color: #d946ef; font-size: 0.75rem; font-weight: bold; margin-top: 4px; }
-    #ai-file-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
-    
-    .spinner {
-        width: 24px; height: 24px; border: 3px solid rgba(162, 28, 175, 0.3);
-        border-radius: 50%; border-top-color: #a21caf; animation: spin 1s ease-in-out infinite;
-        display: inline-block; vertical-align: middle; margin-right: 8px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .teaser-card:active { transform: scale(0.98); }
+    .api-setup-section { background: #fdf4ff; border: 2px dashed #f0abfc; padding: 16px; border-radius: 16px; margin-top: 20px; }
   </style>
 </head>
 
@@ -293,7 +277,7 @@
     <symbol id="icon-swap" viewBox="0 0 24 24"><path d="m7 16 3 3 3-3"/><path d="M10 5v14"/><path d="m17 8-3-3-3 3"/><path d="M14 19V5"/></symbol>
     <symbol id="icon-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
     <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M20.5 5.5 19 9l-1.5-3.5L14 4l3.5-1.5L19 2l1.5 3.5Z"/></symbol>
-    <symbol id="icon-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
   </svg>
 
   <!-- Header -->
@@ -301,8 +285,8 @@
     <div class="d-flex align-items-center">
       <div class="header-icon"><svg class="lucide"><use href="#icon-plane"/></svg></div>
       <div class="header-title">
-        <h5>TDC 航空累哩工具<br>v13.1</h5>
-        <small class="text-secondary fw-bold" style="color:#d946ef !important;"><svg class="lucide me-1" style="font-size:0.8em;vertical-align:-0.1em;"><use href="#icon-camera"/></svg>AI 視覺聯網版</small>
+        <h5>TDC 航空累哩工具<br>v13.3</h5>
+        <small class="text-secondary fw-bold" style="color:#d946ef !important;"><svg class="lucide me-1" style="font-size:0.8em;vertical-align:-0.1em;"><use href="#icon-sparkles"/></svg>終極純淨 + 彩蛋版</small>
       </div>
     </div>
     <div class="d-flex gap-2">
@@ -317,20 +301,6 @@
     <div id="page-calc" class="page-section">
       <div class="card-box">
         
-        <!-- v13.1 AI 視覺記帳與匯率助手 -->
-        <div class="ai-upload-box" id="ai-upload-container">
-            <input type="file" id="ai-file-input" accept="image/*" onchange="handleImageUpload(event)">
-            <div id="ai-upload-idle">
-                <div class="mb-1"><svg class="lucide" style="width: 2rem; height: 2rem; color: #a21caf;"><use href="#icon-camera"/></svg></div>
-                <div class="ai-upload-text">📸 上傳截圖/收據 (自動帶匯率)</div>
-                <div class="ai-upload-subtext">AI 自動抓取金額、店家與即時外幣匯率</div>
-            </div>
-            <div id="ai-upload-loading" style="display:none;">
-                <div class="spinner"></div>
-                <span class="ai-upload-text" style="font-size: 0.95rem;">AI 正在看圖並上網查匯率...</span>
-            </div>
-        </div>
-
         <div class="row mb-3">
           <div class="col-6">
             <div class="switch-group" onclick="toggleSwitch('birthdayMode')" id="switch-box-birthdayMode" style="background:#fff1f2; border-color:#fecdd3; box-shadow: 2px 2px 0 #fecdd3;">
@@ -374,15 +344,16 @@
             </div>
         </div>
 
+        <!-- 乾淨回歸：手動匯率與台銀連結 -->
         <div id="fx-input-group" class="mt-2 mb-2 p-3" style="background: #f0f9ff; border: 2px dashed #bae6fd; border-radius: 16px; display: none;">
-            <label class="form-label text-primary small">請輸入當下匯率 (系統自動加計1.5%)</label>
+            <label class="form-label text-primary small">請輸入當下精確匯率 (系統自動加計1.5%)</label>
             <div class="input-group mb-2">
                 <span class="input-group-text bg-white" style="border: 2px solid #cbd5e1; border-right: none;">1 外幣 = </span>
-                <input type="number" id="fx-rate-input" class="form-control" placeholder="輸入匯率" inputmode="decimal" min="0" step="0.0001">
+                <input type="number" id="fx-rate-input" class="form-control" placeholder="輸入匯率 (例: 0.2105)" inputmode="decimal" min="0" step="0.0001">
                 <span class="input-group-text bg-white" style="border: 2px solid #cbd5e1; border-left: none;">TWD</span>
             </div>
             <button onclick="window.open(atob('aHR0cHM6Ly9yYXRlLmJvdC5jb20udHcveHJ0P0xhbmc9emgtVFc='), '_blank')" class="btn-outline-primary w-100 mt-2 text-decoration-none" style="font-size:0.8rem; background:white; display:flex; align-items:center; justify-content:center;">
-                <svg class="lucide me-1"><use href="#icon-bank"/></svg> 查詢臺銀牌告匯率
+                <svg class="lucide me-1"><use href="#icon-bank"/></svg> 查詢臺銀即時牌告匯率
             </button>
         </div>
 
@@ -430,8 +401,6 @@
         </div>
 
         <div id="cards-container"></div>
-        
-        <!-- v12.7.2 承諾的「自由記帳」區 -->
         <div id="other-cards-container" class="mt-3"></div>
       </div>
     </div>
@@ -459,11 +428,7 @@
         </div>
       </div>
       
-      <!-- v13.0 AI 哩程策略顧問 -->
-      <button id="btn-ai-advisor" onclick="callAIDiagnostic()" class="btn-action w-100 mb-3 font-hand d-flex align-items-center justify-content-center gap-2" style="background: linear-gradient(135deg, #a21caf 0%, #d946ef 100%); border-color: #fdf4ff; box-shadow: 2px 2px 0 #86198f;">
-        <svg class="lucide"><use href="#icon-sparkles"/></svg> 讓 AI 診斷我的累哩進度
-      </button>
-      <div id="ai-diagnostic-result"></div>
+      <!-- AI 顧問已移至倉庫分頁 -->
 
       <div class="card-box mt-3" style="background:#fffbeb; border-color:#fde68a;">
         <h5 class="mb-3 text-warning d-flex align-items-center" style="color:#b45309;"><svg class="lucide me-2"><use href="#icon-shield"/></svg>上限小管家</h5>
@@ -471,7 +436,7 @@
       </div>
     </div>
 
-    <!-- Page 4: Warehouse & Planner (v12.6 全球雙向矩陣版) -->
+    <!-- Page 4: Warehouse & Planner -->
     <div id="page-warehouse" class="page-section" style="display:none;">
         <div class="sub-tab-container mb-3 d-flex p-1" style="background: #e2e8f0; border-radius: 50px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
             <button class="flex-grow-1 fw-bold sub-tab-btn active" onclick="switchWarehouseTab('manage')" id="tab-btn-manage"><svg class="lucide me-1"><use href="#icon-box"/></svg> 資產管理</button>
@@ -551,6 +516,21 @@
                   <li><strong>數據時效性</strong>：內建之全日空(ANA)季節引擎與各大航司數據適用至 <strong>2027 年 1 月</strong>。</li>
               </ul>
             </div>
+
+            <!-- v13.3 展售櫥窗：AI 顧問彩蛋 (完美遷移至此) -->
+            <div id="ai-teaser-container" class="teaser-card mb-3" onclick="showTeaserModal()">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="fw-bold mb-0" style="color: #a21caf;"><svg class="lucide me-1"><use href="#icon-sparkles"/></svg>專屬 AI 哩程策略顧問</h6>
+                    <span class="badge bg-secondary d-flex align-items-center gap-1" style="background:#d946ef !important;"><svg class="lucide" style="width:0.8em;height:0.8em;"><use href="#icon-lock"/></svg>未解鎖</span>
+                </div>
+                <p class="small mb-0" style="color: #701a75;">讓 AI 幫您算牌！自動盤點倉庫靈感、監控額度，並給予最佳刷卡兵推。點此免費解鎖專屬財務大腦 🚀</p>
+            </div>
+
+            <!-- 解鎖後才會出現的真實按鈕 -->
+            <button id="btn-ai-advisor" onclick="callAIDiagnostic()" class="btn-action w-100 mb-3 font-hand align-items-center justify-content-center gap-2" style="display:none; background: linear-gradient(135deg, #a21caf 0%, #d946ef 100%); border-color: #fdf4ff; box-shadow: 2px 2px 0 #86198f;">
+              <svg class="lucide"><use href="#icon-sparkles"/></svg> 讓 AI 診斷我的兌換與累哩進度
+            </button>
+            <div id="ai-diagnostic-result" class="mb-3"></div>
 
             <div class="card-box" style="background: linear-gradient(to bottom, #eff6ff, #ffffff); position: relative;">
               <h5 class="mb-1 text-primary d-flex align-items-center"><svg class="lucide me-2"><use href="#icon-map"/></svg>設定全球兌換目標</h5>
@@ -669,6 +649,27 @@
     </div>
   </div>
 
+  <!-- AI 櫥窗展示 Modal -->
+  <div class="modal fade" id="teaserModal" tabindex="-1" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background:#fff; border-radius:24px; padding:20px;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold m-0 d-flex align-items-center" style="color:#a21caf;"><svg class="lucide me-2"><use href="#icon-sparkles"/></svg>解鎖 AI 策略顧問</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"><svg class="lucide"><use href="#icon-x"/></svg></button>
+        </div>
+        <div class="modal-body p-0">
+            <p class="fw-bold text-dark mb-3">✨ 免費解鎖後，您將獲得三大神級功能：</p>
+            <div class="mb-3 p-3 rounded-4" style="background:#f8fafc; border:1px solid #e2e8f0;">
+                <div class="mb-2">✈️ <strong class="text-primary">機票兌換靈感</strong><br><small class="text-muted">結合倉庫點數與最新航司數據，直接告訴您能飛去哪。</small></div>
+                <div class="mb-2">🚨 <strong class="text-danger">動態額度糾察隊</strong><br><small class="text-muted">自動掃描卡片額度，快刷滿時主動警告換卡。</small></div>
+                <div>💡 <strong class="text-success">下一步刷卡兵推</strong><br><small class="text-muted">根據消費習慣，量身定做下一階段的主力卡片建議。</small></div>
+            </div>
+            <button class="btn-action w-100 font-hand" style="background:linear-gradient(135deg, #a21caf 0%, #d946ef 100%); border:none; box-shadow: 2px 2px 0 #86198f;" onclick="goUnlockApi()">前往獲取免費金鑰 🚀</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal fade" id="settingsModal" tabindex="-1" style="display: none;">
     <div class="modal-dialog">
       <div class="modal-content" style="background:#fff; border-radius:24px; padding:20px;">
@@ -681,7 +682,7 @@
           <div class="mb-4"><div class="fw-bold mb-2 text-primary">內建神卡</div><div id="builtin-cards-list"></div></div>
           <div class="mb-4"><div class="fw-bold mb-2 text-primary">自訂卡片</div><div id="custom-cards-list" class="mb-3"></div><div class="p-3 border rounded-3" style="background:#fff; border-color:#bfdbfe !important; border-style:dashed !important;"><label class="small fw-bold text-primary mb-2 font-hand">＋ 新增卡片</label><input type="text" id="new-card-name" class="form-control mb-2" placeholder="卡片名稱"><div class="row mb-2"><div class="col-6"><input type="number" id="new-card-dom" class="form-control" placeholder="國內" min="0"></div><div class="col-6"><input type="number" id="new-card-for" class="form-control" placeholder="國外" min="0"></div></div><button onclick="addCustomCard()" class="btn-primary w-100 mt-2 font-hand" style="padding:6px;">確認新增</button></div></div>
           
-          <!-- v12.7.4 / 13.1 數據魔術貼區塊 -->
+          <!-- v13.3 數據魔術貼區塊 -->
           <div class="backup-section">
             <div class="fw-bold mb-3 text-warning d-flex align-items-center" style="color:#b45309;">
               <svg class="lucide me-2"><use href="#icon-copy"/></svg> 💾 數據搬家中心
@@ -696,6 +697,29 @@
               換手機？在舊的點複製，新的點還原即可！
             </div>
           </div>
+
+          <!-- v13.3 AI 彩蛋金鑰綁定區 -->
+          <div class="api-setup-section mt-4" id="api-setup-block">
+            <h6 class="fw-bold mb-2 d-flex align-items-center justify-content-between" style="color: #a21caf;">
+                <span><svg class="lucide me-1"><use href="#icon-sparkles"/></svg>解鎖 AI 策略顧問</span>
+                <span id="api-status-badge" class="badge bg-secondary" style="font-size:0.7rem;">未綁定</span>
+            </h6>
+            <div id="api-guide" style="display:none;" class="small text-muted mb-3 bg-white p-3 rounded-4 border">
+                <strong style="color:#701a75;">💡 傻瓜式 3 步驟免費解鎖：</strong><br>
+                <ol class="ps-3 mt-2 mb-2" style="line-height:1.6;">
+                    <li>點擊前往 <a href="https://aistudio.google.com/app/apikey" target="_blank" class="fw-bold" style="color:#d946ef;">Google AI Studio</a> (需登入Google帳號)。</li>
+                    <li>點擊畫面上方的藍色按鈕「Create API key」。</li>
+                    <li>複製那段很長的密碼，貼到下方欄位並儲存！</li>
+                </ol>
+                <div class="text-danger fw-bold" style="font-size:0.7rem;">*金鑰僅儲存於您的手機瀏覽器中，絕對安全。</div>
+            </div>
+            <button id="btn-show-api-guide" class="btn btn-sm w-100 mb-2 font-hand fw-bold" style="border: 2px solid #f0abfc; color: #a21caf; background: white; border-radius:12px; padding:8px;" onclick="document.getElementById('api-guide').style.display='block'; this.style.display='none';">🎁 點此看如何免費獲取金鑰？</button>
+            <div class="input-group">
+                <input type="password" id="user-api-key" class="form-control" placeholder="貼上您的 Gemini API Key" style="border-color:#f0abfc;">
+                <button class="btn btn-primary fw-bold font-hand" style="background:#a21caf; border:none; border-radius: 0 16px 16px 0;" onclick="saveUserApiKey()">儲存</button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -734,138 +758,47 @@
 
   <script>
     /* =========================
-       TDC Miles Tool v13.1 AI 視覺聯網版
+       TDC Miles Tool v13.3 終極純淨 + 彩蛋大搬家版
        ========================= */
     const DB_KEY = 'MILES_APP_V12_6_ISOLATED'; 
     const RULES_KEY = 'MILES_APP_RULES_V12_6';
+    const API_KEY_STORAGE = 'USER_GEMINI_KEY';
     let correctionTarget = { id: null, name: null };
     let editAssetTargetIdx = null;
     let plannerSelectedAssets = new Set();
     let pendingConfirmCallback = null;
 
-    // --- Gemini API ---
-    // API 金鑰由環境動態提供
-    const GEMINI_API_KEY = ""; 
-
-    async function fetchWithRetry(url, options, retries = 5) {
-        const delays = [1000, 2000, 4000, 8000, 16000];
+    // --- Gemini API (指數退避重試與防呆處理) ---
+    async function fetchWithRetry(url, options, retries = 3) {
+        const delays = [1000, 2000, 4000];
         for (let i = 0; i < retries; i++) {
             try {
                 const res = await fetch(url, options);
-                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                if (!res.ok) {
+                    const err = new Error(`HTTP error! status: ${res.status}`);
+                    err.status = res.status;
+                    throw err;
+                }
                 return res;
             } catch (e) {
-                if (i === retries - 1) throw e;
+                // 400 或 403 絕大機率是 API Key 錯誤，不要浪費時間重試，直接拋出
+                if (e.status === 400 || e.status === 403 || i === retries - 1) throw e;
                 await new Promise(r => setTimeout(r, delays[i]));
             }
         }
     }
 
-    // --- v13.1 AI 影像辨識與即時匯率抓取核心 ---
-    function handleImageUpload(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = async (e) => {
-            const base64Data = e.target.result.split(',')[1];
-            await processReceiptWithAI(base64Data);
-            // 清除 input 讓下次同檔名也能觸發
-            event.target.value = '';
-        };
-        reader.readAsDataURL(file);
-    }
-
-    async function processReceiptWithAI(base64Data) {
-        const idleUI = document.getElementById('ai-upload-idle');
-        const loadingUI = document.getElementById('ai-upload-loading');
-        
-        idleUI.style.display = 'none';
-        loadingUI.style.display = 'block';
-
-        const systemPrompt = `You are a strict financial parsing AI. Extract receipt info. Return ONLY a JSON object matching exactly:
-        {
-          "amount": number (the transaction amount),
-          "currency": string (ISO currency code, e.g. TWD, JPY, USD, EUR. If not found, guess based on context, default TWD),
-          "merchant": string (the store name, keep it under 15 chars),
-          "category": string (MUST be exactly one of: "general", "dining", "travel", "flight_ci", "flight_cx", "flight_other". Guess based on merchant),
-          "exchangeRate": number (If currency is NOT TWD, use the Google Search tool to find the real-time exchange rate for '1 [Currency] to TWD' and set this value. If TWD, set to 1.)
-        }`;
-
-        try {
-            const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{
-                        role: "user",
-                        parts: [
-                            { text: "Extract details from this receipt image and get exchange rate if foreign currency." },
-                            { inlineData: { mimeType: "image/jpeg", data: base64Data } }
-                        ]
-                    }],
-                    tools: [{ "google_search": {} }],
-                    systemInstruction: { parts: [{ text: systemPrompt }] },
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "OBJECT",
-                            properties: {
-                                amount: { type: "NUMBER" },
-                                currency: { type: "STRING" },
-                                merchant: { type: "STRING" },
-                                category: { type: "STRING" },
-                                exchangeRate: { type: "NUMBER" }
-                            },
-                            required: ["amount", "currency", "merchant", "category", "exchangeRate"]
-                        }
-                    }
-                })
-            });
-
-            const data = await response.json();
-            const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-            
-            if (resultText) {
-                const parsed = JSON.parse(resultText);
-
-                // 自動填入欄位
-                document.getElementById('keyword-input').value = parsed.merchant || '';
-                document.getElementById('category').value = parsed.category || 'general';
-                document.getElementById('amount').value = parsed.amount || '';
-                checkInputStyle(document.getElementById('amount'));
-
-                // 匯率自動化邏輯
-                if (parsed.currency && parsed.currency !== 'TWD') {
-                    document.getElementById('currency-type').value = 'FOREIGN';
-                    toggleFxInput('FOREIGN');
-                    document.getElementById('fx-rate-input').value = parsed.exchangeRate || '';
-                    showAlert(`✨ 截圖解析成功！\nAI 偵測為 ${parsed.currency}，已自動幫您抓取即時匯率 ${parsed.exchangeRate}。`, 'success');
-                } else {
-                    document.getElementById('currency-type').value = 'TWD';
-                    toggleFxInput('TWD');
-                    showAlert(`✨ 截圖解析成功！\n已填入台幣金額與店家資訊。`, 'success');
-                }
-                
-                // 觸發試算
-                calculate();
-            } else {
-                throw new Error("Empty Response");
-            }
-        } catch (e) {
-            console.error("AI Error:", e);
-            showAlert('❌ 截圖辨識失敗，請確保圖片清晰或稍後再試。', 'warning');
-        } finally {
-            idleUI.style.display = 'block';
-            loadingUI.style.display = 'none';
-        }
-    }
-
-    // v13.0 AI 功能 2：哩程與策略診斷顧問 (保留此廣受好評的功能)
     async function callAIDiagnostic() {
+        const apiKey = localStorage.getItem(API_KEY_STORAGE);
+        if (!apiKey) {
+            showAlert('請先綁定您的 API 金鑰！', 'warning');
+            openSettings();
+            return;
+        }
+
         const loadingBtn = document.getElementById('btn-ai-advisor');
         const origText = loadingBtn.innerHTML;
-        loadingBtn.innerHTML = '<svg class="lucide"><use href="#icon-sparkles"/></svg> AI 正在認真分析您的帳本...';
+        loadingBtn.innerHTML = '<div class="spinner-border spinner-border-sm me-2"></div> AI 正在幫您算牌...';
         loadingBtn.disabled = true;
 
         const db = loadDB();
@@ -888,7 +821,7 @@
         請給出 3 句具體且鼓勵性的建議。例如提醒我哪個額度快滿了要注意、或是點數可以考慮換哪個國家的機票。語氣要像朋友聊天一樣。`;
 
         try {
-            const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`, {
+            const response = await fetchWithRetry(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -896,24 +829,79 @@
                     systemInstruction: { parts: [{ text: "You are a friendly credit card miles expert in Taiwan. Use Traditional Chinese. Keep the response concise to a single small paragraph or 3 bullet points." }] }
                 })
             });
+
             const data = await response.json();
             const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
             document.getElementById('ai-diagnostic-result').innerHTML = `
-                <div class="mt-2 p-3 rounded-4" style="background: #fdf4ff; border: 2px solid #e879f9; color: #701a75; font-size: 0.9rem; line-height: 1.6; font-family: var(--font-main);">
+                <div class="mt-2 p-3 rounded-4" style="background: #fdf4ff; border: 2px solid #e879f9; color: #701a75; font-size: 0.9rem; line-height: 1.6; font-family: var(--font-main); animation: fadeIn 0.3s ease;">
                     <div class="fw-bold mb-2 d-flex align-items-center"><svg class="lucide me-1"><use href="#icon-sparkles"/></svg> AI 顧問診斷結果：</div>
                     ${resultText.replace(/\n/g, '<br>')}
                 </div>
             `;
         } catch (e) {
-            console.error(e);
-            showAlert('AI 顧問目前在忙，請稍後再試。');
+            console.error("AI 錯誤:", e);
+            if (e.status === 400 || e.status === 403 || (e.message && (e.message.includes('400') || e.message.includes('403')))) {
+                showAlert('❌ API 金鑰驗證失敗！\n請確認您有前往 Google 申請真實的金鑰並正確貼上。', 'warning');
+            } else {
+                showAlert('❌ 網路連線失敗或伺服器忙碌，請稍後再試。', 'warning');
+            }
         } finally {
             loadingBtn.innerHTML = origText;
             loadingBtn.disabled = false;
         }
     }
 
+    // --- UI 狀態切換器 ---
+    function updateAIVisibility() {
+        const apiKey = localStorage.getItem(API_KEY_STORAGE);
+        const teaser = document.getElementById('ai-teaser-container');
+        const btn = document.getElementById('btn-ai-advisor');
+        const badge = document.getElementById('api-status-badge');
+        const keyInput = document.getElementById('user-api-key');
+
+        if (apiKey) {
+            if (teaser) teaser.style.display = 'none';
+            if (btn) btn.style.display = 'flex';
+            if (badge) { badge.className = 'badge bg-success'; badge.innerText = '已解鎖'; }
+            if (keyInput) keyInput.value = apiKey;
+        } else {
+            if (teaser) teaser.style.display = 'block';
+            if (btn) btn.style.display = 'none';
+            if (badge) { badge.className = 'badge bg-secondary'; badge.innerText = '未綁定'; }
+            if (keyInput) keyInput.value = '';
+            document.getElementById('ai-diagnostic-result').innerHTML = '';
+        }
+    }
+
+    function saveUserApiKey() {
+        const key = document.getElementById('user-api-key').value.trim();
+        if (key) {
+            localStorage.setItem(API_KEY_STORAGE, key);
+            showAlert('🎉 金鑰儲存成功！\n專屬 AI 顧問已為您解鎖。', 'success');
+            hideModal('settingsModal');
+            updateAIVisibility();
+        } else {
+            localStorage.removeItem(API_KEY_STORAGE);
+            showAlert('已清除 API 金鑰。');
+            updateAIVisibility();
+        }
+    }
+
+    function showTeaserModal() {
+        showModal('teaserModal');
+    }
+    
+    function goUnlockApi() {
+        hideModal('teaserModal');
+        setTimeout(() => {
+            openSettings();
+            document.getElementById('api-guide').style.display = 'block';
+            document.getElementById('btn-show-api-guide').style.display = 'none';
+            const modalBody = document.querySelector('#settingsModal .modal-body');
+            modalBody.scrollTop = modalBody.scrollHeight;
+        }, 300);
+    }
 
     // --- 內建防禦與卡片定義 (v12.6 穩定核心回歸) ---
     const BUILTIN_DEFS = [
@@ -1190,7 +1178,6 @@
             allAvailableCards.push({ id: c.id, name: c.name, ...res, twdSpend, twdBase });
         });
 
-        // 目標過濾引擎
         const target = document.getElementById('redemption-target').value;
         const filteredCards = allAvailableCards.filter(c => {
             if(target === 'ALL') return true;
@@ -1199,7 +1186,6 @@
             return true;
         });
 
-        // 官網強優先級
         filteredCards.forEach(c => {
             c.priority = 0;
             if(ctx.cat === 'flight_ci' && (c.id === 'ctbc_ci' || c.id === 'ctbc_ci_inf')) c.priority = 100;
@@ -1211,10 +1197,7 @@
             return b.miles - a.miles;
         });
 
-        // 提取前兩名為推薦
         currentResults = filteredCards.slice(0, 2);
-        
-        // 剩餘的全列為自由記帳區
         const otherCards = filteredCards.slice(2);
         
         renderResults(currentResults, otherCards);
@@ -1238,7 +1221,7 @@
                     <h4 class="card-name">${c.name}</h4>
                     <div class="text-muted small font-hand mt-1" style="line-height:1.4;">${c.note}</div>
                     <div class="d-flex gap-2 mt-2">
-                        <button class="btn-card-action ${btnClass}" onclick="recordTx('${c.id}', true)">📝 記帳</button>
+                        <button class="btn-card-action ${btnClass}" onclick="recordTx('${c.id}')">📝 記帳</button>
                         <button class="btn-correct" onclick="openCorrection('${c.id}','${c.name}')"><svg class="lucide"><use href="#icon-pen"/></svg> 修正</button>
                     </div>
                 </div>
@@ -1250,7 +1233,6 @@
             con.appendChild(div);
         });
 
-        // 渲染自由記帳區
         const otherCon = document.getElementById('other-cards-container');
         otherCon.innerHTML = '';
         if (otherCards.length > 0) {
@@ -1270,18 +1252,16 @@
                         <div>
                             <div class="fw-bold" style="color: #64748b; font-family: var(--font-hand);">${c.miles.toLocaleString()} 哩</div>
                         </div>
-                        <button class="btn-card-action p-1 px-2" style="font-size:0.75rem;" onclick="recordTx('${c.id}', false)">記帳</button>
+                        <button class="btn-card-action p-1 px-2" style="font-size:0.75rem;" onclick="recordTx('${c.id}')">記帳</button>
                     </div>
                 </div>`;
                 otherCon.appendChild(div);
-                
-                // 將 otherCards 加入一個全域查詢清單供 recordTx 使用
                 currentResults.push(c); 
             });
         }
     }
 
-    function recordTx(cardId, isMainList) {
+    function recordTx(cardId) {
         const item = currentResults.find(c => c.id === cardId);
         if(!item) return;
 
@@ -1293,13 +1273,11 @@
         if(item.id==='hsbc_live') { points = Math.trunc(item.miles/2); unitText='積分'; }
         else if(item.id==='hsbc_inf') { unitText='積分'; }
 
-        // 寫入 consumedQuota 欄位 (只消耗觸發加碼的額度)
         db.records[monthKey][txId] = { id: item.id, name: item.name, spend: item.twdBase, consumedQuota: item.consumedQuota, miles: points, unit: unitText, note: document.getElementById('keyword-input').value || '一般消費' };
 
         const limitKey = getLimitKey(db, item.id, now);
         if(!db.limits[limitKey]) db.limits[limitKey] = { spend:0, points:0 };
         
-        // 智慧扣除：有設定 consumedQuota 則依照該值扣除，否則(相容舊卡片)扣除全額
         let qToConsume = item.consumedQuota !== undefined ? item.consumedQuota : item.twdBase;
         if(qToConsume > 0) { db.limits[limitKey].spend += qToConsume; }
         
@@ -1386,7 +1364,6 @@
         if(id==='hsbc_live') return 29600; if(id==='ctbc_ci_inf') return 600000; if(id==='taishin_cx') return 1000000; if(id==='ctbc_ci') return 1440000; return 999999; 
     }
 
-    // --- 導覽與初始化 ---
     function switchWarehouseTab(view) {
         document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(`tab-btn-${view}`).classList.add('active');
@@ -1402,7 +1379,8 @@
             if (!dateInput.value) { dateInput.value = new Date().toISOString().split('T')[0]; }
             
             renderPlannerAssets(); 
-            runPlannerCalc(); 
+            runPlannerCalc();
+            updateAIVisibility(); // 切換到 Planner 時確認 AI 按鈕狀態
         }
     }
 
@@ -1518,23 +1496,17 @@
         });
     }
 
-    // --- 日期對應季節引擎 (嚴格比對截圖 5: 日本↔亞洲1區) ---
     function checkAnaSeason(dateStr) {
         if (!dateStr) return 'R';
         const d = new Date(dateStr); const m = d.getMonth() + 1; const day = d.getDate();
         const year = d.getFullYear(); const dateNum = m * 100 + day; 
-        
         if (year === 2026) {
-            // L: 1/5~2/13, 4/1~4/28, 5/11~6/30
             if ((dateNum >= 105 && dateNum <= 213) || (dateNum >= 401 && dateNum <= 428) || (dateNum >= 511 && dateNum <= 630)) return 'L';
-            // H: 1/1~1/4, 4/29~5/10, 7/18~8/23, 12/21~12/31
             if ((dateNum >= 101 && dateNum <= 104) || (dateNum >= 429 && dateNum <= 510) || (dateNum >= 718 && dateNum <= 823) || (dateNum >= 1221 && dateNum <= 1231)) return 'H';
             return 'R';
         }
         if (year === 2025) {
-            // L: 1/4~1/27, 4/1~4/23, 5/12~6/30, 12/1~12/14
             if ((dateNum >= 104 && dateNum <= 127) || (dateNum >= 401 && dateNum <= 423) || (dateNum >= 512 && dateNum <= 630) || (dateNum >= 1201 && dateNum <= 1214)) return 'L';
-            // H: 1/1~1/3, 4/24~5/11, 7/18~8/24, 12/15~12/31
             if ((dateNum >= 101 && dateNum <= 103) || (dateNum >= 424 && dateNum <= 511) || (dateNum >= 718 && dateNum <= 824) || (dateNum >= 1215 && dateNum <= 1231)) return 'H';
             return 'R';
         }
@@ -1584,7 +1556,6 @@
                 </div>`;
             }
             
-            // 單程計算邏輯：精準折半
             if (!isRT) required = Math.trunc(required / 2);
             
             const availMiles = available[airlineKey] || 0;
@@ -1622,9 +1593,135 @@
             con.innerHTML += createCard('ANA', anaSelfName, b64_ANA, data.NH, '經 NRT/HND');
             
             let starReq = data.NH[cls];
-            if(typeof starReq === 'object') starReq = starReq['R']; // 星盟取近似值
+            if(typeof starReq === 'object') starReq = starReq['R'];
             con.innerHTML += createCard('ANA', 'ANA (換星盟)', b64_ANA, starReq, '直飛為主');
         }
+    }
+
+    /* Utilities & Modal Handlers */
+    function showModal(id) { document.getElementById(id).classList.add('show'); }
+    function hideModal(id) { document.getElementById(id).classList.remove('show'); }
+    document.querySelectorAll('[data-bs-dismiss="modal"]').forEach(btn => { btn.onclick = function() { const m = this.closest('.modal'); if(m) { m.classList.remove('show'); } } });
+    function showAlert(msg, type = 'warning') { 
+        const iconEl = document.getElementById('alert-icon');
+        if (type === 'success') { iconEl.className = 'lucide text-success mb-3'; iconEl.innerHTML = '<use href="#icon-check-c"/>'; } 
+        else { iconEl.className = 'lucide text-warning mb-3'; iconEl.innerHTML = '<use href="#icon-warn"/>'; }
+        document.getElementById('alert-msg').innerText = msg; showModal('customAlertModal'); 
+    }
+    function showCustomConfirm(msg, callback, type = 'warning') {
+        const iconEl = document.getElementById('confirm-icon');
+        if (type === 'success') { iconEl.className = 'lucide text-success mb-3'; iconEl.innerHTML = '<use href="#icon-check-c"/>'; } 
+        else { iconEl.className = 'lucide text-warning mb-3'; iconEl.innerHTML = '<use href="#icon-warn"/>'; }
+        document.getElementById('confirm-msg').innerHTML = msg; pendingConfirmCallback = callback; showModal('customConfirmModal');
+    }
+    document.getElementById('confirm-btn-yes').onclick = function() { hideModal('customConfirmModal'); if(pendingConfirmCallback) pendingConfirmCallback(); };
+    function openCorrection(id, name) { correctionTarget = { id, name }; const k = document.getElementById('keyword-input').value; if(!k) return showAlert('請先在主畫面輸入「關鍵字」才能設定修正規則'); document.getElementById('modal-card-name').innerText = name; document.getElementById('modal-keyword').innerText = k; document.getElementById('modal-new-rate').value = ''; showModal('correctionModal'); }
+    function saveCorrection() { const rate = parseFloat(document.getElementById('modal-new-rate').value); if(isNaN(rate)) return showAlert('請輸入數值'); const k = document.getElementById('modal-keyword').innerText; const ruleKey = `${k}|${correctionTarget.id}`; const rules = loadRules(); rules[ruleKey] = rate; saveRules(rules); hideModal('correctionModal'); calculate(); }
+    function updateUI() { renderList(); renderStatus(); updateAIVisibility(); }
+
+    function openGuide() {
+        const content = `
+        <div class="guide-slide p-4 mb-4 slide-sage">
+            <div class="g-badge bg-white/20 mb-2">Step 1</div><div class="g-title font-black mb-3">📝 專業記帳與監控</div>
+            <ul class="g-list text-sm">
+                <li><b>記帳：</b>輸入消費後點擊記帳，紀錄將進入「明細」分頁。</li>
+                <li><b>沖帳：</b>明細支援單筆刪除，刪除後會自動退還卡片累積額度。</li>
+                <li><b>歸戶：</b>確認無誤後，至「監控」分頁點擊「一鍵進倉」，即可正式存入倉庫。</li>
+            </ul>
+        </div>
+        <div class="guide-slide p-4 mb-4 slide-terra">
+            <div class="g-badge bg-white/20 mb-2">全球佈局</div><div class="g-title font-black mb-3">📍 全球雙向規劃</div>
+            <ul class="g-list text-sm">
+                <li><b>打破限制：</b>自由選擇<b>「🛫出發地」</b>與<b>「🛬目的地」</b>。</li>
+                <li><b>一鍵對調：</b>點擊中間的<b>「⇄」</b>圖示，瞬間切換回程或外站出發，計算超直覺！</li>
+                <li><b>單程切換：</b>點擊開關即可折半哩程需求，全面支援 2025 年 ANA 國際線單程兌換新規。</li>
+            </ul>
+        </div>
+        <div class="guide-slide p-4 mb-4 slide-dusty">
+            <div class="g-badge bg-white/20 mb-2">權益提醒</div><div class="g-title font-black mb-3">☑️ 資產比對與免責</div>
+            <ul class="g-list text-sm">
+                <li><b>缺口比對：</b>勾選您想動用的「倉庫資產」，系統自動顯示尚缺哩程並亮起紅/綠燈。</li>
+            </ul>
+            <p class="text-sm mt-3 pt-3 mb-0 border-top border-white border-opacity-25">⚠️ <b>提醒</b>：顯示數值為官方標準預估值。請點擊「立即兌換」確認官網的<b>實際位置狀態</b>與精確標準。</p>
+        </div>
+        <div class="guide-slide p-4 mb-4 slide-stone">
+            <div class="g-badge bg-white/40 mb-2" style="color:#fff;">神器功能</div><div class="g-title font-black mb-3">📱 輕鬆搬家</div>
+            <ul class="g-list text-sm">
+                <li><b>舊手機：</b>去右上角設定，點擊最下方「複製搬家代碼」。</li>
+                <li><b>新手機：</b>在 LINE 複製代碼，回設定按「貼上還原代碼」，資料一秒搬過來！</li>
+            </ul>
+        </div>
+        <div class="guide-slide p-4 mb-4 slide-terra" style="background:#a21caf;">
+            <div class="g-badge bg-white/40 mb-2" style="color:#fff;">隱藏彩蛋</div><div class="g-title font-black mb-3 text-white">✨ AI 策略顧問</div>
+            <ul class="g-list text-sm text-white">
+                <li><b>如何解鎖：</b>在「倉庫 ➡️ 兌換試算」點擊專屬卡片，或前往設定頁底部。</li>
+                <li><b>功能：</b>輸入免費的 API 金鑰後，AI 軍師將為您動態監控刷卡額度並給予兌換靈感！</li>
+            </ul>
+        </div>
+        `;
+        document.getElementById('guide-content').innerHTML = content; showModal('guideModal');
+    }
+
+    function openSettings() { renderSettings(); showModal('settingsModal'); }
+    function renderSettings() {
+        const db = loadDB(); document.getElementById('setting-hsbc-autopay').checked = db.settings.hsbc_autopay;
+        const builtinCon = document.getElementById('builtin-cards-list'); builtinCon.innerHTML = ''; 
+        BUILTIN_DEFS.forEach(def => { const isOn = db.settings.enabledBuiltins.includes(def.id); builtinCon.innerHTML += `<div class="switch-group mb-2"><span class="switch-label">${def.name}</span><input class="form-check-input flex-shrink-0" type="checkbox" ${isOn?'checked':''} onchange="toggleBuiltin('${def.id}')"></div>`; });
+        const customCon = document.getElementById('custom-cards-list'); customCon.innerHTML = ''; 
+        db.customCards.forEach((c, idx) => { customCon.innerHTML += `<div class="custom-card-item"><div><div class="fw-bold">${c.name}</div></div><button class="btn-outline-danger" onclick="delCustomCard(${idx})"><svg class="lucide"><use href="#icon-trash"/></svg></button></div>`; });
+    }
+    function updateGlobalSetting(key, val) { const db = loadDB(); db.settings[key] = val; saveDB(db); calculate(); }
+    function toggleBuiltin(id) { const db = loadDB(); const idx = db.settings.enabledBuiltins.indexOf(id); if(idx >= 0) db.settings.enabledBuiltins.splice(idx, 1); else db.settings.enabledBuiltins.push(id); saveDB(db); }
+    function addCustomCard() { const name = document.getElementById('new-card-name').value; const dom = parseFloat(document.getElementById('new-card-dom').value); const fore = parseFloat(document.getElementById('new-card-for').value); if(!name || isNaN(dom)) return; const db = loadDB(); db.customCards.push({ id:`cust_${Date.now()}`, name, domRate:dom, forRate:fore }); saveDB(db); renderSettings(); }
+    function delCustomCard(idx) { showCustomConfirm(`確定要刪除自訂卡片「${loadDB().customCards[idx].name}」嗎？`, () => { const db = loadDB(); db.customCards.splice(idx, 1); saveDB(db); renderSettings(); }); }
+
+    function clearInput(id) {
+        const el = document.getElementById(id);
+        if (el) { el.value = ''; el.focus(); if (id === 'amount') checkInputStyle(el); }
+    }
+
+    function exportDataMagic() {
+        const db = loadDB(); const rules = loadRules();
+        const pack = { db, rules, v: '13.3', ts: Date.now() };
+        const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(pack))));
+        
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(b64).then(() => { showAlert('✅ 資料已封裝並複製！\n請快去 LINE 貼上傳給自己吧。', 'success'); }).catch(err => { prompt('複製失敗，請手動全選複製以下代碼：', b64); });
+        } else {
+            let textArea = document.createElement("textarea"); textArea.value = b64; textArea.style.position = "fixed"; textArea.style.left = "-999999px"; textArea.style.top = "-999999px"; document.body.appendChild(textArea); textArea.focus(); textArea.select();
+            try { document.execCommand('copy'); showAlert('✅ 資料已封裝並複製！\n請快去 LINE 貼上傳給自己吧。', 'success'); } catch (err) { prompt('複製失敗，請手動全選複製以下代碼：', b64); } textArea.remove();
+        }
+    }
+
+    function importDataMagic() {
+        hideModal('settingsModal');
+        setTimeout(() => {
+            showCustomConfirm('⚠️ 此動作將完全覆蓋目前手機內的「所有資料」，確定要還原/搬家嗎？', () => {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.readText().then(processImportCode).catch(err => {
+                        let code = prompt('無法自動讀取剪貼簿，請在此貼上您的搬家代碼：');
+                        if(code) processImportCode(code);
+                    });
+                } else {
+                    let code = prompt('請在此貼上您的搬家代碼：');
+                    if(code) processImportCode(code);
+                }
+            }, 'warning');
+        }, 100);
+    }
+    
+    function processImportCode(text) {
+        try {
+            if (!text || text.trim() === '') throw new Error('Empty');
+            const json = decodeURIComponent(escape(atob(text.trim())));
+            const pack = JSON.parse(json);
+            if(pack.db && pack.v) {
+                localStorage.setItem(DB_KEY, JSON.stringify(pack.db));
+                localStorage.setItem(RULES_KEY, JSON.stringify(pack.rules || {}));
+                showAlert('🎉 搬家成功！\n系統將自動重新整理。', 'success');
+                setTimeout(() => location.reload(), 1500);
+            } else { throw new Error('Format Error'); }
+        } catch(e) { showAlert('❌ 找不到有效的搬家代碼！\n請確認您有完整複製那段長長的文字。', 'warning'); }
     }
 
     // --- 初始化 ---
@@ -1634,4 +1731,3 @@
   </script>
 </body>
 </html>
-
